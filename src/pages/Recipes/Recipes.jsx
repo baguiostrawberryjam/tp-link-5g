@@ -3,6 +3,21 @@ import hero from "../../assets/images/ramsay-hero.webp";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 
 function Recipes(){
+
+  const [recipes, setRecipes] = useState([]);
+  const [skip,setSkip] = useState(0);
+  const [limit,setLimit] = useState(4);
+
+  useEffect(()=>{
+    fetch(`https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`)
+    .then((response)=>response.json())
+    .then((data)=>{
+      setRecipes(data.recipes);
+      console.log(data.recipes);
+    })
+
+  },[skip,limit]);
+
     return(
         <>
             <div className="hero-container">
@@ -16,12 +31,25 @@ function Recipes(){
 
             <div className="main-container">
                 <div className="card-container">
-                    <RecipeCard />
-                    <RecipeCard />
-                    <RecipeCard />
-                    <RecipeCard />
-                    <RecipeCard />
+                    <div id="recipes-container">
+                        {recipes.map((recipe)=>{
+                        return(
+                            <RecipeCard recipe={recipe}/>
+                        )
+                        })}
+                    </div>
                 </div>
+
+        <div id="button-container">
+          <button onClick={()=>setSkip(Math.max(0,skip-limit))}>&lt;</button>
+          <button onClick={()=>setSkip((skip+limit))}>&gt;</button>
+          <select onChange={(evt)=>setLimit(evt.target.value)}>
+            <option value="4">4 items</option>
+            <option value="8">8 items</option>
+            <option value="12">12 items</option>
+            <option value="16">16 items</option>
+          </select>
+        </div>
             </div>
         </>
     )
