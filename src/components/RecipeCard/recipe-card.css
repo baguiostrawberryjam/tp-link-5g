@@ -46,6 +46,10 @@
     font-weight: 600;
 }
 
+.recipe-card h3 {
+    text-align: center;
+}
+
 .recipe-card-details {
     display: flex;
     flex-direction: column;
