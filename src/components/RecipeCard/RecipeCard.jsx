@@ -1,8 +1,9 @@
+import { NavLink } from "react-router";
 import "./recipe-card.css";
 
-function RecipeCard({recipe}){
+function RecipeCard({ recipe }) {
   return (
-    <div className="recipe-card">
+    <NavLink to={`/recipe/${recipe.id}`} className="recipe-card" key={recipe.id}>
       <div className="recipe-card-image-container">
         <img
           className="recipe-card-image"
@@ -17,18 +18,17 @@ function RecipeCard({recipe}){
         </div>
 
         <div className="recipe-card-details">
-        <span className="recipe-detail">
+          <span className="recipe-detail">
             <span className="material-symbols-outlined">kid_star</span>
             {recipe.rating} ({recipe.reviewCount} reviews)
-        </span>
-        <span className="recipe-detail">
+          </span>
+          <span className="recipe-detail">
             <span className="material-symbols-outlined">washoku</span>
             {recipe.servings} servings
-        </span>
+          </span>
         </div>
-
       </div>
-    </div>
+    </NavLink>
   );
 }
 
