@@ -42,19 +42,20 @@ function Recipes(){
 
             <div id="button-container">
             <button onClick={()=>setSkip(Math.max(0,skip-limit))}>
-                <span class="material-symbols-outlined">chevron_left</span>
+                <span className="material-symbols-outlined">chevron_left</span>
             </button>
             <button onClick={()=>setSkip((skip+limit))}>
-                <span class="material-symbols-outlined">chevron_right</span>
+                <span className="material-symbols-outlined">chevron_right</span>
             </button>
-            {/*
-            <select onChange={(evt)=>setLimit(evt.target.value)}>
+            <select
+            id="item-selector"
+            value={limit}
+            onChange={(evt)=>setLimit(evt.target.value)}>
                 <option value="4">4 items</option>
                 <option value="8">8 items</option>
                 <option value="12">12 items</option>
                 <option value="16">16 items</option>
             </select>
-            */}
             </div>
             </div>
         </>
